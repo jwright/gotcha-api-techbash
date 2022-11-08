@@ -14,4 +14,16 @@ defmodule GotchaWeb.GraphQL.Schema do
       resolve(&GotchaWeb.GraphQL.Resolvers.Arenas.nearby/3)
     end
   end
+
+  @desc "All mutations that can be performed on Gotcha"
+  mutation do
+    field :register_player, type: :player do
+      arg(:avatar, :string)
+      arg(:email_address, non_null(:string))
+      arg(:name, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve(&GotchaWeb.GraphQL.Resolvers.Players.register/3)
+    end
+  end
 end

@@ -34,6 +34,7 @@ defmodule Gotcha.MixProject do
   defp deps do
     [
       {:absinthe_plug, "~> 1.5"},
+      {:bcrypt_elixir, "~> 2.0"},
       {:geocalc, "~> 0.8.5"},
       {:phoenix, "~> 1.6.11"},
       {:phoenix_ecto, "~> 4.4"},
