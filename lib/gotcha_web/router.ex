@@ -1,12 +1,14 @@
 defmodule GotchaWeb.Router do
   use GotchaWeb, :router
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  scope "/" do
+    forward "/graphql", Absinthe.Plug,
+      schema: GotchaWeb.GraphQL.Schema,
+      json_codec: Phoenix.json_library()
 
-  scope "/api", GotchaWeb do
-    pipe_through :api
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: GotchaWeb.GraphQL.Schema,
+      json_codec: Phoenix.json_library()
   end
 
   # Enables LiveDashboard only for development

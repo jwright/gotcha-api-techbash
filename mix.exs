@@ -5,7 +5,7 @@ defmodule Gotcha.MixProject do
     [
       app: :gotcha,
       version: "0.1.0",
-      elixir: "~> 1.12",
+      elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -33,6 +33,7 @@ defmodule Gotcha.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:absinthe_plug, "~> 1.5"},
       {:phoenix, "~> 1.6.11"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
