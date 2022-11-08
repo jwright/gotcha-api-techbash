@@ -2,6 +2,8 @@ defmodule Gotcha.Arena do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Gotcha.Repo
+
   schema "arenas" do
     field :city, :string
     field :latitude, :float
@@ -37,5 +39,16 @@ defmodule Gotcha.Arena do
       :state,
       :zip_code
     ])
+  end
+
+  def near(latitude, longitude, radius) do
+    radius_in_meters = Kernel.trunc(radius * 1609.34)
+    current_location = [latitude, longitude]
+
+    __MODULE__
+    |> Repo.all()
+    |> Enum.filter(fn arena ->
+      Geocalc.within?(radius_in_meters, current_location, [arena.latitude, arena.longitude])
+    end)
   end
 end
