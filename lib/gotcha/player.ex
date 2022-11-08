@@ -2,6 +2,8 @@ defmodule Gotcha.Player do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Gotcha.Repo
+
   schema "players" do
     field :avatar, :string
     field :email_address, :string
@@ -21,8 +23,8 @@ defmodule Gotcha.Player do
   @doc false
   def changeset(player, attrs) do
     player
-    |> cast(attrs, [:avatar, :email_address, :name, :password_hash])
-    |> validate_required([:email_address, :name, :password_hash])
+    |> cast(attrs, [:name, :email_address, :avatar, :password])
+    |> validate_required([:name, :email_address, :password])
     |> unique_constraint(:email_address)
     |> hash_password
   end
